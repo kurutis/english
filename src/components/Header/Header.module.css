@@ -1,0 +1,30 @@
+.header{
+    border-radius: 16px;
+    background-color: #ffffff;
+    padding: 24px 32px;
+    margin-bottom: 16px;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 26px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header p{
+    display: flex;
+}
+
+
+.icon{
+    margin: 0 8px;
+    display: block;
+    height: 24px;
+    width: 24px;
+    color: #0966D3;
+}
+
+.user{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

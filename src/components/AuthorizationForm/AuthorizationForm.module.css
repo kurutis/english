@@ -1,0 +1,211 @@
+.authorizationForm{
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 24px 32px 0;
+    overflow: hidden;
+    height: calc(100vh - 150px);
+    display: flex;
+    flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.authorizationForm h1{
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 40px;
+    margin: 0;
+    color: #252A35;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #E1E7EC;
+}
+
+.authorizationForm h2 {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 26px;
+    color: #252A35;
+    margin: 0;
+    display: flex;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.authorizationForm h2 div{
+    border-radius: 100px;
+    background-color: #E7F2FF;
+    color: #0966D3;
+    width: 26px;
+    height: 26px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.authorizationForm span{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #252A35;
+    display: flex;
+    background-color: #E7F2FF;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 8px;
+    display: flex;
+    margin-bottom: 16px;
+    width: 100%;
+}
+
+
+
+.info{
+    height: 24px;
+    width: 24px;
+    margin-right: 8px;
+}
+
+.form_all{
+    display: flex;
+    flex-direction: column;
+}
+
+.form_group label{
+    display: block;
+    font-size: 16px;
+    line-height: 24px;
+    color: #252A35;
+    margin: 0 0 4px;
+    font-weight: bold;
+}
+
+.form_input, .passport{
+    width: 70%;
+}
+
+.input{
+    background-color: #ffffff;
+    color: #565D6C;
+    padding: 10px 16px;
+    font-size: 16px;
+    line-height: 24px;
+    border-radius: 4px;
+    border: 1px solid #C6CDD3;
+    height: 30px;
+    width: 67.8%;
+    margin: 0 0 8px 0;
+}
+
+.passport{
+    display: flex;
+    justify-content: space-between;
+}
+
+.passport .input{
+    width: 415px;
+}
+
+.footer_form {
+    background-color: #3C414D;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 32px;
+    margin: 6vh -32px 0 -32px;
+    border: none;
+}
+
+.late{
+    display: flex;
+    outline: none;
+    box-sizing: border-box;
+    flex-direction: column;
+}
+
+.late_input{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+}
+
+.late label{
+    color: #E1E7EC;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+        
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: rgba(71, 71, 71, 0.548);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 1s;
+}
+        
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.footer_form .input{
+    width: 60%;
+}
+
+.footer_form button{
+    padding: 9px 15px;
+    background-color: #ffffff;
+    border: none;
+    color: #0966D3;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid transparent;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    border-radius: 4px;
+    text-align: center;
+    padding: 11px 15px;
+    margin: 0;
+    opacity: 1;
+    transition: .3s all ease;
+    display: flex;
+}
+
+
+.footer_form button img{
+    height: 24px;
+    width: 24px;
+}
+
+.question{
+    height: 24px;
+    width: 24px;
+    margin-left: 10px;
+}
+
+.errorInput {
+  border: 1px solid #B10000;
+}
+
+.errorText {
+  color: #B10000;
+  font-size: 12px;
+  margin-top: 4px;
+}

@@ -1,0 +1,66 @@
+.content_draggable{
+    position: relative;
+    
+}
+
+.informationInputModal{
+    left: -306px;
+    top: 0px;
+    max-width: 275px;
+    display: block;
+    position: absolute;
+    z-index: 1000;
+    min-width: 230px;
+    max-width: 250px;
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 16px;
+    padding: 16px;
+    font-size: 14px;
+    line-height: 1.5;
+    cursor: move;
+}
+
+.drag-handle {
+    
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.content {
+    padding: 15px;
+}
+
+.information{
+    height: 24px;
+    width: 24px;
+    margin-right: 10px;
+}
+
+.informationInputModal h3{
+    color: #f6aa5f;
+    display: flex;
+    align-items: center;
+    font-size: medium;
+    justify-content: space-between;
+    margin: 0;
+    font-weight: 500;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #E1E7EC;
+}
+
+.informationInputModal ul{
+    margin: 0;
+}
+
+.informationInputModal p{
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.moving{
+    height: 24px;
+    width: 24px;
+}
+

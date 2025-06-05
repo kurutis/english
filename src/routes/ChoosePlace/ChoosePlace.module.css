@@ -1,0 +1,75 @@
+.ChoosePlace{
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 24px 32px 0;
+    overflow: hidden;
+    height: calc(100vh - 150px);
+    display: flex;
+    flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.ChoosePlace h1{
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 40px;
+    margin: 0;
+    color: #252A35;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #E1E7EC;
+}
+
+.ChoosePlace h2{
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 26px;
+    color: #252A35;
+    margin: 0;
+    display: flex;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.ChoosePlace h2 div{
+    border-radius: 100px;
+    background-color: #E7F2FF;
+    color: #0966D3;
+    width: 26px;
+    height: 26px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.auditorium h3, .place h3{
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+    color: #252A35;
+    margin: 0 0 12px;
+    margin-top: 8px;
+}
+
+.auditorium, .place{
+    width: 50%;
+}
+
+.form_group{
+    display: flex;
+    flex-direction: column;
+}
+
+.form_group label{
+    display: block;
+    font-size: 16px;
+    line-height: 24px;
+    color: #252A35;
+    margin: 0 0 4px;
+    font-weight: bold;
+}
+
+.form_group select{
+    display: none;
+}
