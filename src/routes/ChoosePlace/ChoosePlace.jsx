@@ -1,13 +1,69 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { showUserName } from '../../features/authorizationSlice';
 import s from './ChoosePlace.module.css';
-import arrow from '../../assets/arrow-right-long-solid.svg'
+import arrow from '../../assets/arrow-right-long-solid.svg';
 import { NavLink } from 'react-router-dom';
 import InformationModal from '../../components/informationInputModal/informationModal';
 import InfoPlace from '../../components/InfoPlaceModal/InfoPlaceModal';
-import arrow_down from '../../assets/chevron-down-solid.svg'
+import arrow_down from '../../assets/chevron-down-solid.svg';
 
+// Кастомный компонент Select с поддержкой disabled состояния
+const CustomSelect = ({ options, value, onChange, placeholder, className, disabled, disabledColor = '#585D6B' }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const selectRef = useRef(null);
+
+  const handleClickOutside = (e) => {
+    if (selectRef.current && !selectRef.current.contains(e.target)) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  return (
+    <div 
+      ref={selectRef}
+      className={`${s.customSelect} ${className} ${isOpen ? s.open : ''} ${disabled ? s.disabled : ''}`}
+      onClick={() => !disabled && setIsOpen(!isOpen)}
+      style={disabled ? { pointerEvents: 'none' } : {}}
+    >
+      <div className={s.selectHeader}>
+        <span 
+          className={s.selectedValue}
+          style={!value && disabled ? { color: disabledColor } : {}}
+        >
+          {value ? options.find(opt => opt.value === value)?.label : placeholder}
+        </span>
+        <img 
+          src={arrow_down} 
+          alt="▼" 
+          className={s.arrowIcon} 
+          style={disabled ? { opacity: 0.5 } : {}} 
+        />
+      </div>
+      {isOpen && !disabled && (
+        <div className={s.selectOptions}>
+          {options.map(option => (
+            <div
+              key={option.value}
+              className={`${s.option} ${value === option.value ? s.selected : ''}`}
+              onClick={() => {
+                onChange(option.value);
+                setIsOpen(false);
+              }}
+            >
+              {option.label}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
 
 export const ChoosePlace = () => {
     const dispatch = useDispatch();
@@ -33,7 +89,22 @@ export const ChoosePlace = () => {
         { value: '0033', label: '0033' },
         { value: '0034', label: '0034' },
         { value: '0035', label: '0035' },
-    ]
+    ];
+
+    const rowOptions = [
+        { value: 'А', label: 'А' },
+        { value: 'Б', label: 'Б' },
+        { value: 'В', label: 'В' }
+    ];
+
+    const seatOptions = [
+        { value: '1', label: '1' },
+        { value: '2', label: '2' },
+        { value: '3', label: '3' },
+        { value: '4', label: '4' },
+        { value: '5', label: '5' }
+    ];
+
     useEffect(() => {
         dispatch(showUserName());
     }, []);
@@ -46,32 +117,44 @@ export const ChoosePlace = () => {
                 <div className={s.auditorium}>
                     <div className={s.form_group}>
                         <h3>№ Аудитории</h3>
-                        <Select options={auditoriumOptions} onChange={(selectedOption) => setAuditorium(selectedOption)} placeholder='Выберите номер' />
+                        <CustomSelect 
+                            options={auditoriumOptions} 
+                            value={auditorium} 
+                            onChange={setAuditorium} 
+                            placeholder="Выберите номер"
+                            className={s.auditoriumSelect}
+                        />
                     </div> 
                 </div>
+                <h3>№ Места</h3>
                 <div className={s.place}>
-                    <h3>№ Места</h3>
                     <div className={s.form_group}>
                         <label>Ряд (буква)</label>
-                        <select value={row} onChange={(e) => setRow(e.target.value)}>
-                            <option value="А">А</option>
-                            <option value="Б">Б</option>
-                            <option value="В">В</option>
-                        </select>
+                        <CustomSelect 
+                            options={rowOptions} 
+                            value={row} 
+                            onChange={setRow} 
+                            placeholder="Выберите ряд"
+                            className={s.rowSelect}
+                            disabled={!auditorium}
+                            disabledColor="#585D6B"
+                        />
                     </div>
                     <div className={s.form_group}>
                         <label>Место (цифра)</label>
-                        <select value={seat} onChange={(e) => setSeat(e.target.value)}>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
+                        <CustomSelect 
+                            options={seatOptions} 
+                            value={seat} 
+                            onChange={setSeat} 
+                            placeholder="Выберите место"
+                            className={s.seatSelect}
+                            disabled={!auditorium}
+                            disabledColor="#585D6B"
+                        />
                     </div>
                 </div>
                 <div className={s.footer}>
-                    <NavLink><button>Продолжить <img src={arrow} alt="" /></button></NavLink>
+                    <button>Продолжить <img src={arrow} alt="" /></button>
                 </div>
             </form>
             <InformationModal>

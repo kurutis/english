@@ -1,4 +1,5 @@
 .ChoosePlace{
+    color: #252A35;
     background-color: #ffffff;
     border-radius: 16px;
     padding: 24px 32px 0;
@@ -52,8 +53,22 @@
     margin-top: 8px;
 }
 
-.auditorium, .place{
-    width: 50%;
+.arrowIcon{
+    width: 16px;
+    height: 16px;
+}   
+
+.place{
+    display: flex;
+    gap: 5%;
+}
+
+.auditorium{
+    width: 70%;
+}
+
+.place .form_group{
+    width: 32.5%;
 }
 
 .form_group{
@@ -70,6 +85,133 @@
     font-weight: bold;
 }
 
-.form_group select{
-    display: none;
+
+.footer{
+    background-color: #3C414D;
+    display: flex;
+    justify-content: end;
+    padding: 16px 32px;
+    margin: 6vh -32px 0 -32px;
+    border: none;
+}
+
+.footer button{
+    padding: 9px 15px;
+    background-color: #ffffff;
+    border: none;
+    color: #0966D3;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid transparent;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    border-radius: 4px;
+    text-align: center;
+    padding: 11px 15px;
+    margin: 0;
+    opacity: 1;
+    transition: .3s all ease;
+    display: flex;
+}
+
+.footer button img{
+    height: 24px;
+    width: 24px;
+}
+
+.auditoriumSelect, .rowSelect, .seatSelect{
+    width: 70%;
+    border: 1px solid #C8CDD2;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.customSelect {
+  position: relative;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  transition: all 0.3s;
+}
+
+.customSelect:hover {
+  border-color: #888;
+}
+
+.customSelect.open {
+  border-color: #3F66CB;
+  box-shadow: 0 0 0 1px #3F66CB;
+}
+
+.selectHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.selectedValue {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.arrowIcon {
+  width: 12px;
+  height: 12px;
+  transition: transform 0.3s;
+}
+
+.customSelect.open .arrowIcon {
+  transform: rotate(180deg);
+}
+
+.selectOptions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #DFDFDF;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  z-index: 100;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.option {
+  padding: 10px 15px;
+  transition: background-color 0.2s;
+}
+
+.option:hover {
+  background-color: #f0f0f0;
+}
+
+.option.selected {
+  background-color: #e0e0e0;
+  font-weight: bold;
+}
+
+.customSelect.disabled {
+  background-color: #ffffff;
+  border-color: #D8DCDF;
+  cursor: not-allowed;
+}
+
+.disabled .selectedValue {
+  color: #D8DCDF;
+}
+
+.disabled .arrowIcon {
+  opacity: 0.5;
 }

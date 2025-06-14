@@ -80,9 +80,6 @@
     font-weight: bold;
 }
 
-.form_input, .passport{
-    width: 70%;
-}
 
 .input{
     background-color: #ffffff;
@@ -93,17 +90,17 @@
     border-radius: 4px;
     border: 1px solid #C6CDD3;
     height: 30px;
-    width: 67.8%;
+    width: 70%;
     margin: 0 0 8px 0;
 }
 
 .passport{
     display: flex;
-    justify-content: space-between;
+    gap: 50px;
 }
 
 .passport .input{
-    width: 415px;
+    width: 22.9vw;
 }
 
 .footer_form {

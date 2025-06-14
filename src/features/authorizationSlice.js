@@ -1,17 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-    const initialState = {
-        formData: {
+const initialState = {
+    formData: {
         surname: '',
         name: '',
         patronymic: '',
         documentSeries: '',
         documentNumber: '',
         late: false
-        },
-        errors: {},
-        showName: false
-    };
+    },
+    errors: {},
+    showName: false
+};
 
 const authorizationSlice = createSlice({
     name: 'authorization',
@@ -23,9 +23,13 @@ const authorizationSlice = createSlice({
         setErrors: (state, action) => {
             state.errors = action.payload;
         },
-        clearForm: () => initialState,
+        clearForm: (state) => {
+            state.formData = { ...initialState.formData };
+            state.errors = {};
+            state.showName = false;
+        },
         showUserName: (state) => {
-        state.showName = true;
+            state.showName = true;
         }
     }
 });

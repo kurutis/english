@@ -1,61 +1,95 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import s from './informationModal.module.css';
 import info2 from '../../assets/circle-info-solid.svg';
 import moving from '../../assets/arrows-up-down-left-right-solid.svg';
 
-const InformationModal = () => {
-  const [position, setPosition] = useState({ x: 1110, y: -520});
+const InformationModal = ({ children, surnameInputId = "surname" }) => {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isInitialized, setIsInitialized] = useState(false);
   const modalRef = useRef(null);
   const isDragging = useRef(false);
-  const startPosition = useRef({ x: -306, y: 0 });
-  
+  const dragStartPos = useRef({ x: 0, y: 0 });
+  const modalStartPos = useRef({ x: 0, y: 0 });
+
+  const calculateInitialPosition = () => {
+    const surnameInput = document.getElementById(surnameInputId);
+    if (!surnameInput) return;
+
+    const inputRect = surnameInput.getBoundingClientRect();
+    const modalWidth = 300;
+    
+    setPosition({
+      x: inputRect.right + 10,
+      y: inputRect.top
+    });
+    setIsInitialized(true);
+  };
+
   const handleMouseDown = (e) => {
     isDragging.current = true;
-    startPosition.current = {
-      x: e.clientX - position.x,
-      y: e.clientY - position.y
+    dragStartPos.current = {
+      x: e.clientX,
+      y: e.clientY
     };
+    modalStartPos.current = {
+      x: position.x,
+      y: position.y
+    };
+    document.body.style.userSelect = 'none';
   };
 
   const handleMouseMove = (e) => {
     if (!isDragging.current) return;
     
+    const newX = modalStartPos.current.x + (e.clientX - dragStartPos.current.x);
+    const newY = modalStartPos.current.y + (e.clientY - dragStartPos.current.y);
+    
     setPosition({
-      x: e.clientX - startPosition.current.x,
-      y: e.clientY - startPosition.current.y
+      x: newX,
+      y: newY
     });
   };
 
   const handleMouseUp = () => {
     isDragging.current = false;
+    document.body.style.userSelect = '';
   };
 
+  useEffect(() => {
+    calculateInitialPosition();
+    window.addEventListener('resize', calculateInitialPosition);
+
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+    
+    return () => {
+      window.removeEventListener('resize', calculateInitialPosition);
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, []);
+
+  if (!isInitialized) return null;
+
   return (
-    <div style={{ position: 'relative' }}>
-      <div
-        ref={modalRef}
-        className={s.informationInputModal}
-        style={{
-          position: 'absolute',
-          left: `${position.x}px`,
-          top: `${position.y}px`
-        }}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onTouchStart={handleMouseDown}
-        onTouchMove={handleMouseMove}
-        onTouchEnd={handleMouseUp}
-      >
-        <div className="drag-handle">
-          <h3>
-            <img className={s.information} src={info2} alt="Информация" />
-            Информация
-            <img className={s.moving} src={moving} alt="Перемещение" />
-          </h3>
-        </div>
-        <div className="content">
-        </div>
+    <div
+      ref={modalRef}
+      className={s.informationInputModal}
+      style={{
+        left: `${position.x}px`,
+        top: `${position.y}px`
+      }}
+      onMouseDown={handleMouseDown}
+    >
+      <div className={s.dragHandle}>
+        <h3>
+          <img className={s.information} src={info2} alt="Информация" />
+          Информация
+          <img className={s.moving} src={moving} alt="Перемещение" />
+        </h3>
+      </div>
+      <div className={s.content}>
+        {children}
       </div>
     </div>
   );
